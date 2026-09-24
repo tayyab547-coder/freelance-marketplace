@@ -16,49 +16,119 @@ export interface Database {
       services: {
         Row: {
           id: string;
+          freelancer_id: string;
           title: string;
           description: string;
           price: number;
-          freelancer_name: string;
+          category: string;
           created_at: string;
         };
         Insert: {
           id?: string;
+          freelancer_id: string;
           title: string;
           description: string;
           price: number;
-          freelancer_name: string;
+          category: string;
           created_at?: string;
         };
         Update: {
           id?: string;
+          freelancer_id?: string;
           title?: string;
           description?: string;
           price?: number;
-          freelancer_name?: string;
+          category?: string;
           created_at?: string;
         };
       };
       projects: {
         Row: {
           id: string;
+          client_id: string;
           title: string;
           description: string;
           budget: number;
+          status: string;
           created_at: string;
         };
         Insert: {
           id?: string;
+          client_id: string;
           title: string;
           description: string;
           budget: number;
+          status?: string;
           created_at?: string;
         };
         Update: {
           id?: string;
+          client_id?: string;
           title?: string;
           description?: string;
           budget?: number;
+          status?: string;
+          created_at?: string;
+        };
+      };
+      profiles: {
+        Row: {
+          id: string;
+          full_name: string;
+          email: string;
+          role: string;
+          bio: string | null;
+          skills: string[] | null;
+          avatar_url: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id: string;
+          full_name: string;
+          email: string;
+          role?: string;
+          bio?: string | null;
+          skills?: string[] | null;
+          avatar_url?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          full_name?: string;
+          email?: string;
+          role?: string;
+          bio?: string | null;
+          skills?: string[] | null;
+          avatar_url?: string | null;
+          created_at?: string;
+        };
+      };
+      proposals: {
+        Row: {
+          id: string;
+          project_id: string;
+          freelancer_id: string;
+          cover_letter: string;
+          bid_amount: number;
+          status: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          project_id: string;
+          freelancer_id: string;
+          cover_letter: string;
+          bid_amount: number;
+          status?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          project_id?: string;
+          freelancer_id?: string;
+          cover_letter?: string;
+          bid_amount?: number;
+          status?: string;
           created_at?: string;
         };
       };
