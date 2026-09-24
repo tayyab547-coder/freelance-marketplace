@@ -59,12 +59,17 @@ export default function PostProjectPage() {
     setStatus("idle");
     setApiError("");
 
-    const { error } = await supabase.from("projects").insert({
-      title: form.title.trim(),
-      description: form.description.trim(),
-      budget: Number(form.budget),
-    });
+const { data: { user } } = await supabase.auth.getUser();
 
+if (!user) {
+  setApiError("You must be logged in to post a project.");
+  return;
+}
+
+const { error } = await supabase.from("projects").insert({
+  client_id: user.id,   // <-- no question mark here!
+  ...
+});
     if (error) {
       setApiError(error.message);
       setStatus("error");
