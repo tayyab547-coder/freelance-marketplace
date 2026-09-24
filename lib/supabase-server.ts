@@ -23,17 +23,18 @@ export function createSupabaseServerClient() {
           try {
             cookieStore.set({ name, value, ...options });
           } catch {
-            // Called from a Server Component — cookie mutation is a no-op but safe to ignore.
+            // Called from a Server Component — can be safely ignored
+            // if middleware is refreshing user sessions.
           }
         },
         remove(name: string, options: CookieOptions) {
           try {
             cookieStore.set({ name, value: "", ...options });
           } catch {
-            // Same as above.
+            // Same reason as above
           }
         },
       },
     }
-  );
+  ) as any;
 }
